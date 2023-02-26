@@ -16,7 +16,6 @@ const main = async () => {
       8
     )
   ]
-  console.log(points)
 
   while (true) {
     let i = 0
