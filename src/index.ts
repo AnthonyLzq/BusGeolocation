@@ -24,7 +24,7 @@ const main = async () => {
       serverDebug(`Sending position: ${i}, position: [${element}]`)
       socket.emit('bus/position', element)
       i++
-      await sleep(5000)
+      await sleep(1000)
     }
   }
 }

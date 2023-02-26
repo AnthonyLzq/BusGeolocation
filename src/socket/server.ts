@@ -30,8 +30,11 @@ const socketConnection = (d: Debugger) => ({
         }
       })
 
-      global.__io__.on('connection', async socket => {
-        socket.emit(`${id}/initialData`, {})
+      global.__io__.on('connection', socket => {
+        socket.emit(`${id}/initialData`, {
+          foo: 'bar'
+        })
+        d(`Socket connected: ${socket.id}`)
       })
 
       d(`Socket server started on port: ${PORT}.`)
