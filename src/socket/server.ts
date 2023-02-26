@@ -1,7 +1,7 @@
 import { Debugger } from 'debug'
 import { Server } from 'socket.io'
 
-const PORT = parseInt(process.env.PORT as string) || 1996
+const PORT = parseInt(process.env.PORT as string) || 8080
 
 const socketConnection = (d: Debugger) => ({
   connect: () => {
