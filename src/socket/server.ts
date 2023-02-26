@@ -2,6 +2,9 @@ import { Debugger } from 'debug'
 import { Server } from 'socket.io'
 
 const PORT = parseInt(process.env.PORT as string) || 8080
+const origin = ['http://localhost:3000', process.env.FRONT_URL as string]
+
+console.log('🚀 ~ file: server.ts:6 ~ origin:', origin)
 
 const socketConnection = (d: Debugger) => ({
   connect: () => {
@@ -19,14 +22,14 @@ const socketConnection = (d: Debugger) => ({
                 .replace(/&/g, '","')
                 .replace(/=/g, '":"') +
               '"}'
-          ) as { id: string; moduleId: string; sensorId: string }
+          ) as { id: string }
 
           id = query.id
 
           fn(null, true)
         },
         cors: {
-          origin: ['http://localhost:3000', process.env.FRONT_URL as string]
+          origin
         }
       })
 
