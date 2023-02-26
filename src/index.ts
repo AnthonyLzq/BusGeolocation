@@ -19,6 +19,7 @@ const main = async () => {
 
   while (true)
     for (const element of points) {
+      serverDebug(`Sending position: ${element}`)
       socket.emit('bus/position', element)
       await sleep(5000)
     }
