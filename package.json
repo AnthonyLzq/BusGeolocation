@@ -54,5 +54,22 @@
   "dependencies": {
     "debug": "^4.3.4",
     "socket.io": "^4.6.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyLzq/BusGeolocation.git"
+  },
+  "keywords": [
+    "bus",
+    "geolocation",
+    "real",
+    "time"
+  ],
+  "bugs": {
+    "url": "https://github.com/AnthonyLzq/BusGeolocation/issues"
+  },
+  "homepage": "https://github.com/AnthonyLzq/BusGeolocation#readme"
 }
