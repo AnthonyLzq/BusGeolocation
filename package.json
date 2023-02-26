@@ -1,0 +1,58 @@
+{
+  "name": "bus-geolocation",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "description": "Bus Geolocation API",
+  "scripts": {
+    "lint": "eslint src/* --ext .ts",
+    "service": "nodemon",
+    "start": "DEBUG=BusGeolocation:* ts-node src/index.ts",
+    "release": "standard-version",
+    "test:local": "jest --setupFiles dotenv/config --ci -i --forceExit",
+    "test:ci": "jest --ci -i"
+  },
+  "author": "AnthonyLzq <sluzquinosa@uni.pe>",
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/types": "^29.4.3",
+    "@types/debug": "^4.1.7",
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.14.1",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.4.3",
+    "jest-unit": "^0.0.2",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^3.14.2",
+    "typescript": "^4.9.5"
+  },
+  "nodemonConfig": {
+    "watch": [
+      ".env",
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "src/**/*.test.ts"
+    ],
+    "exec": "DEBUG=BusGeolocation:* npx ts-node -r dotenv/config ./src/index"
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "socket.io": "^4.6.1"
+  }
+}
