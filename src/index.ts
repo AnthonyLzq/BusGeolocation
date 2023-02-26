@@ -9,13 +9,14 @@ const main = async () => {
   const socket = socketConnection(serverDebug).connect()
   const points = [
     ...getPointsOnLine(ROUTE_POINTS[0], ROUTE_POINTS[1], 8),
-    ...ROUTE_POINTS.slice(3, -2),
+    ...ROUTE_POINTS.slice(1, -2),
     ...getPointsOnLine(
       ROUTE_POINTS[ROUTE_POINTS.length - 2],
       ROUTE_POINTS[ROUTE_POINTS.length - 1],
       8
     )
   ]
+  console.log(points)
 
   while (true) {
     let i = 0

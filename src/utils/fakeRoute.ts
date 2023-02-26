@@ -1,7 +1,7 @@
 type Point = [number, number]
 
 const getPointsOnLine = (A: Point, B: Point, N: number) => {
-  const points: Point[] = [A]
+  const points: Point[] = []
 
   // Calculate the slope and y-intercept of the line
   const slope = (B[1] - A[1]) / (B[0] - A[0])
@@ -17,8 +17,6 @@ const getPointsOnLine = (A: Point, B: Point, N: number) => {
 
     points.push([x, y])
   }
-
-  points.push(B)
 
   return points
 }
