@@ -32,10 +32,6 @@ const getData = async ({ db }: { db: Database }) => {
   const result = await db.ref(`/ids`).get()
 
   try {
-    console.log(
-      '🚀 ~ file: realTime.ts:36 ~ getData ~ result.toJSON():',
-      result.toJSON()
-    )
     const value = allClientsData.parse(result.toJSON())
 
     return value

@@ -37,9 +37,6 @@ const socketConnection = (d: Debugger) => ({
           process.env.FIREBASE_REAL_TIME_DB
         )
 
-        const aux = await getData({ db })
-        console.log('aux', aux)
-
         if (id) socket.emit(`${id}/initialData`, await getDataById({ db, id }))
         else socket.emit(`initialData`, await getData({ db }))
 
