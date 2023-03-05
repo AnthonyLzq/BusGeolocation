@@ -1,15 +1,14 @@
+import { getData, getDataById } from 'database'
 import { Debugger } from 'debug'
 import { Server } from 'socket.io'
 
 const PORT = parseInt(process.env.PORT as string) || 8080
 const origin = ['http://localhost:3000', process.env.FRONT_URL as string]
 
-console.log('🚀 ~ file: server.ts:6 ~ origin:', origin)
-
 const socketConnection = (d: Debugger) => ({
   connect: () => {
     if (!global.__io__) {
-      let id: string
+      let id: string | undefined
 
       global.__io__ = new Server(PORT, {
         allowRequest(req, fn) {
@@ -22,7 +21,7 @@ const socketConnection = (d: Debugger) => ({
                 .replace(/&/g, '","')
                 .replace(/=/g, '":"') +
               '"}'
-          ) as { id: string }
+          ) as { id?: string }
 
           id = query.id
 
@@ -33,10 +32,17 @@ const socketConnection = (d: Debugger) => ({
         }
       })
 
-      global.__io__.on('connection', socket => {
-        socket.emit(`${id}/initialData`, {
-          foo: 'bar'
-        })
+      global.__io__.on('connection', async socket => {
+        const db = global.__firebase__.database(
+          process.env.FIREBASE_REAL_TIME_DB
+        )
+
+        const aux = await getData({ db })
+        console.log('aux', aux)
+
+        if (id) socket.emit(`${id}/initialData`, await getDataById({ db, id }))
+        else socket.emit(`initialData`, await getData({ db }))
+
         d(`Socket connected: ${socket.id}`)
       })
 

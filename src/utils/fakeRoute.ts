@@ -1,5 +1,13 @@
 type Point = [number, number]
 
+/**
+ * It takes two points, A and B, and returns an array of N points that lie on the
+ * line between A and B.
+ * @param {Point} A - The first point on the line
+ * @param {Point} B - Point
+ * @param {number} N - The number of points to generate
+ * @returns An array of points
+ */
 const getPointsOnLine = (A: Point, B: Point, N: number) => {
   const points: Point[] = []
 
