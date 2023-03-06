@@ -98,7 +98,7 @@ const updateRoute201Data = (client: MqttClient) => {
           })
         }
       })
-      await sleep(2000)
+      await sleep(500)
       i++
 
       if (i === route201Points.length - 1) i = 0
