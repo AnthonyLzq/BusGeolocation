@@ -68,7 +68,6 @@ const updateRoute201Data = (client: MqttClient) => {
     pubDebug(`Publishing messages at: ${currentIsoTime}`)
 
     let i = 0
-    let reverse = false
 
     while (true) {
       clientPublish({
@@ -100,12 +99,9 @@ const updateRoute201Data = (client: MqttClient) => {
         }
       })
       await sleep(2000)
+      i++
 
-      if (i === route201Points.length - 1) reverse = true
-      else if (i === 0) reverse = false
-
-      if (reverse) i--
-      else i++
+      if (i === route201Points.length - 1) i = 0
     }
   })
 }
