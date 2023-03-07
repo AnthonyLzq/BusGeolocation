@@ -26,7 +26,7 @@ const sub = (client: MqttClient) => {
       )
       subDebug(`Message: \t${message}`)
       updateState({ db, moduleId, id, value, sensorId })
-      socketConnection(subDebug).connect().emit(`${sensorId}/aq`, value)
+      socketConnection(subDebug).connect().emit(`${sensorId}/state`, value)
     }
   })
 }

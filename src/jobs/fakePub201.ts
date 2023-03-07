@@ -15,9 +15,9 @@ const bus = {
 type ClientPublishProps<T> = {
   client: MqttClient
   value: T
-  id: string
-  moduleId: number
-  sensorId: number
+  id: number | string
+  moduleId: number | string
+  sensorId: number | string
   topic: string
   cb?: () => void
 }
