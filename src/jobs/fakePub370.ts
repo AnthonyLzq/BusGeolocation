@@ -9,16 +9,16 @@ import { clientPublish } from './helpers'
 
 const bus = {
   id: '8e234a60-4b52-431a-8c33-98fac1bca3a9',
-  moduleId: 'rojo',
-  sensorId: 209
+  moduleId: 'azul',
+  sensorId: 370
 }
 
-const updateRoute209Data = (client: MqttClient) => {
+const updateRoute370Data = (client: MqttClient) => {
   const pubDebug = debug(`${MAIN_TOPIC}:Mqtt:demo:pub`)
 
   if (process.env.NODE_ENV === 'production') {
     pubDebug(
-      `This job: "${updateRoute209Data.name}" is not allowed in production.`
+      `This job: "${updateRoute370Data.name}" is not allowed in production.`
     )
 
     return
@@ -27,13 +27,13 @@ const updateRoute209Data = (client: MqttClient) => {
   const datePlus5s = new Date(Date.now() + 5 * 1000)
   const cronJobTime = formatDateToCronJobStringSMHDM(datePlus5s)
   const route201Points = readFileSync(
-    join(__dirname, '../routes/209.txt'),
+    join(__dirname, '../routes/370.txt'),
     'utf8'
   )
     .split('\n')
     .map(point => point.split(',').map(coord => parseFloat(coord)))
 
-  pubDebug(`Started job: "${updateRoute209Data.name}".`)
+  pubDebug(`Started job: "${updateRoute370Data.name}".`)
   cron.schedule(cronJobTime, async () => {
     pubDebug(`Job started at: ${new Date().toISOString()}`)
 
@@ -81,4 +81,4 @@ const updateRoute209Data = (client: MqttClient) => {
   })
 }
 
-export { updateRoute209Data }
+export { updateRoute370Data }

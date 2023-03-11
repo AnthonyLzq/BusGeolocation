@@ -1,41 +1,16 @@
 import cron from 'node-cron'
 import debug from 'debug'
 import { MqttClient } from 'mqtt'
-
-import { formatDateToCronJobStringSMHDM, MAIN_TOPIC, sleep } from 'utils'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
+import { formatDateToCronJobStringSMHDM, MAIN_TOPIC, sleep } from 'utils'
+import { clientPublish } from './helpers'
+
 const bus = {
   id: '8e234a60-4b52-431a-8c33-98fac1bca3a9',
-  moduleId: 1,
+  moduleId: 'rojo',
   sensorId: 204
-}
-
-type ClientPublishProps<T> = {
-  client: MqttClient
-  value: T
-  id: string
-  moduleId: number
-  sensorId: number
-  topic: string
-  cb?: () => void
-}
-
-const clientPublish = <T>({
-  client,
-  value,
-  id,
-  moduleId,
-  sensorId,
-  topic,
-  cb
-}: ClientPublishProps<T>) => {
-  client.publish(
-    `${MAIN_TOPIC}/${topic}`,
-    `${id}/${moduleId}/${sensorId}/${value}`
-  )
-  cb?.()
 }
 
 const updateRoute204Data = (client: MqttClient) => {
